@@ -1,4 +1,4 @@
-package assignment;
+package assignment.task1;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +10,7 @@ import java.util.Scanner;
  * @author Marwa N. Jarada
  */
 
-public class SaveFileSwing extends JFrame{
+public class SaveFileSwing extends JFrame {
     FileWriter fileWriter;
     PrintWriter printWriter;
     JMenuBar mainMenu;
@@ -25,31 +25,32 @@ public class SaveFileSwing extends JFrame{
     JScrollPane scrollPan;
     JTextArea fileTxt;
     JFileChooser fileChooser;
+    JFileChooser fileChooser2;
     Color colorChooser;
+    File selectedFile;
 
-    public SaveFileSwing(){
+    public SaveFileSwing() {
 
         setLocationRelativeTo(null);
-        setSize(400,250);
+        setSize(400, 250);
         setResizable(true);
         setTitle("File Processing");
 
 
-
-        mainMenu =new JMenuBar();
+        mainMenu = new JMenuBar();
         fileMenu = new JMenu("File");
-        save=new JMenuItem("Save");
+        save = new JMenuItem("Save");
         save.addActionListener(actionListener);
-        editMenu=new JMenu("Edit");
-        exit=new JMenuItem("Exit");
+        editMenu = new JMenu("Edit");
+        exit = new JMenuItem("Exit");
         exit.addActionListener(actionListener);
-        open=new JMenuItem("Open");
+        open = new JMenuItem("Open");
         open.addActionListener(actionListener);
-        close=new JMenuItem("Close");
+        close = new JMenuItem("Close");
         close.addActionListener(actionListener);
-        font=new JMenuItem("Font");
+        font = new JMenuItem("Font");
         font.addActionListener(actionListener);
-        color=new JMenuItem("Color");
+        color = new JMenuItem("Color");
         color.addActionListener(actionListener);
 
 
@@ -70,9 +71,9 @@ public class SaveFileSwing extends JFrame{
         mainMenu.add(fileMenu);
         mainMenu.add(editMenu);
         this.setJMenuBar(mainMenu);
-        fileTxt=new JTextArea();
-        scrollPan= new JScrollPane(fileTxt);
-        scrollPan.setPreferredSize(new Dimension(400,250));
+        fileTxt = new JTextArea();
+        scrollPan = new JScrollPane(fileTxt);
+        scrollPan.setPreferredSize(new Dimension(400, 250));
         this.add(scrollPan);
 
 
@@ -82,16 +83,16 @@ public class SaveFileSwing extends JFrame{
 
 
     public static void main(String[] args) {
-        SaveFileSwing saveFileSwing=new SaveFileSwing();
+        SaveFileSwing saveFileSwing = new SaveFileSwing();
 
     }
 
-    ActionListener actionListener=new ActionListener() {
+    ActionListener actionListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
 
             String action = actionEvent.getActionCommand().toLowerCase();
-            switch (action){
+            switch (action) {
                 case "open":
                     openFileChooser();
                     break;
@@ -113,7 +114,11 @@ public class SaveFileSwing extends JFrame{
                     fileTxt.setForeground(colorChooser);
                     break;
                 case "save":
-                    writeContentinFile();
+                    try {
+                        writeContentinFile();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     break;
 
 
@@ -122,50 +127,52 @@ public class SaveFileSwing extends JFrame{
     };
 
 
-    public void showFontDailog(){
-        int fontSize= (int)JOptionPane.showInputDialog(null,"Select font size","Fonr size",JOptionPane.OK_CANCEL_OPTION,
+    public void showFontDailog() {
+        int fontSize = (int) JOptionPane.showInputDialog(null, "Select font size", "Fonr size", JOptionPane.OK_CANCEL_OPTION,
                 null,
-                new Integer[]{12,14,16,18},
+                new Integer[]{12, 14, 16, 18},
                 15);
-        fileTxt.setFont(new Font("Tahoma",0,fontSize));
+        fileTxt.setFont(new Font("Tahoma", 0, fontSize));
 
     }
 
-    public void  openFileChooser() {
+    public void openFileChooser() {
         fileChooser = new JFileChooser();
         fileChooser.showDialog(SaveFileSwing.this, "Select");
         try {
-            File selectedFile = fileChooser.getSelectedFile();
+            selectedFile = fileChooser.getSelectedFile();
             Scanner scanner = new Scanner(selectedFile);
-            while (scanner.hasNext()){
+            while (scanner.hasNext()) {
                 fileTxt.append(scanner.nextLine());
 
 
             }
             fileTxt.setEditable(true);
-        }catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Empty File");
         }
 
 
-
     }
 
-    public void writeContentinFile(){
-        File file = new File("file.txt");
+    public void writeContentinFile() throws IOException {
         try {
-            fileWriter=new FileWriter(file);
-            printWriter=new PrintWriter(fileWriter);
+            fileChooser2 = new JFileChooser();
+            fileChooser2.showSaveDialog(SaveFileSwing.this);
+            File choosed = fileChooser.getSelectedFile();
+            fileWriter = new FileWriter(choosed);
+            printWriter = new PrintWriter(fileWriter);
             printWriter.println(fileTxt.getText());
-        }catch (IOException e){
-            System.out.println("Error IOException");
-        }finally {
-            printWriter.close();
 
+        } catch (IOException e) {
+            System.out.println("Error IOException");
+
+
+        }finally {
+
+            fileWriter.close();
+            printWriter.close();
         }
 
-
-
     }
-
 }
