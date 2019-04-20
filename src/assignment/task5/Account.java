@@ -1,4 +1,4 @@
-package task5;
+package assignment.task5;
 
 public class Account {
     String name;

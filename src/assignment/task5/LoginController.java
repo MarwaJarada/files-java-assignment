@@ -1,4 +1,4 @@
-package task5;
+package assignment.task5;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -9,7 +9,6 @@ import javafx.scene.control.TextField;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 
 
 public class LoginController {
