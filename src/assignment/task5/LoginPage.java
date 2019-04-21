@@ -19,7 +19,6 @@ public class LoginPage extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader=new FXMLLoader(getClass().getResource("view/page_login.fxml"));
-        FXMLLoader loader2=new FXMLLoader(getClass().getResource("view/page_option.fxml"));
         Parent parent=loader.load();
         Scene scene=new Scene(parent);
         primaryStage.setScene(scene);

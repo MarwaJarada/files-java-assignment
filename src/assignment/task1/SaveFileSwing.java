@@ -160,6 +160,7 @@ public class SaveFileSwing extends JFrame {
             fileChooser2 = new JFileChooser();
             fileChooser2.showSaveDialog(SaveFileSwing.this);
             File choosed = fileChooser.getSelectedFile();
+            choosed.createNewFile();
             fileWriter = new FileWriter(choosed);
             printWriter = new PrintWriter(fileWriter);
             printWriter.println(fileTxt.getText());
@@ -169,9 +170,11 @@ public class SaveFileSwing extends JFrame {
 
 
         }finally {
-
+            try{
             fileWriter.close();
-            printWriter.close();
+            printWriter.close();}catch (Exception e){
+
+            }
         }
 
     }
