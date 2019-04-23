@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 
+
 import static java.lang.Float.*;
 
 /**
@@ -21,8 +22,8 @@ public class ReadWriteSerializedObject extends JFrame{
     JTextField numtxt;
     JTextField balancrtxt;
 
-    JButton saveBtn;
-    JButton cancelBtn;
+    JButton writeBtn;
+    JButton readlBtn;
 
     // Classes we will use to read/write our objects from/into file
 
@@ -47,19 +48,19 @@ public class ReadWriteSerializedObject extends JFrame{
         nametxt=new JTextField();
         numtxt=new JTextField();
         balancrtxt=new JTextField();
-        saveBtn=new JButton("Save To my File");
-        cancelBtn=new JButton("Cancel");
+        writeBtn=new JButton("Write");
+        readlBtn=new JButton("Read");
         add(accountNameLabel);
         add(nametxt);
         add(accountNumLabel);
         add(numtxt);
         add(accountBalanceLabel);
         add(balancrtxt);
-        add(saveBtn);
-        add(cancelBtn);
+        add(writeBtn);
+        add(readlBtn);
         ActionListener actionListener=new ActionListener();
-        saveBtn.addActionListener(actionListener);
-        cancelBtn.addActionListener(actionListener);
+        writeBtn.addActionListener(actionListener);
+        readlBtn.addActionListener(actionListener);
         setVisible(true);
 
     }
@@ -69,36 +70,58 @@ public class ReadWriteSerializedObject extends JFrame{
         public void actionPerformed(ActionEvent actionEvent) {
             String myAction = actionEvent.getActionCommand().toLowerCase();
             switch (myAction){
-                case "save to my file":
+                case "write":
+                    writeAccountObject();
+                    break;
+                case "read":
                     try {
-                        fileOutputStream=new FileOutputStream("D:\\4thSemester\\" +
-                                "Programming3\\file\\Objects file" +
-                                ".txt",true);
-                        objectOutputStream=new ObjectOutputStream(fileOutputStream);
-                        Account myAccount=new Account(nametxt.getText(),
-                                 Float.parseFloat(balancrtxt.getText()),
-                                Integer.parseInt(numtxt.getText()));
-                        objectOutputStream.writeObject(myAccount);
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
+                        readAccountObject();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    finally {
-                        try {
-                            fileOutputStream.close();
-                            objectOutputStream.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
                     break;
-                case "cancel":
-
-                    break;
-
-
             }
+        }
+    }
+
+    public void writeAccountObject(){
+        try {
+            fileOutputStream=new FileOutputStream("D:\\4thSemester\\" +
+                    "Programming3\\file\\Objects file" +
+                    ".ser");
+            objectOutputStream=new ObjectOutputStream(fileOutputStream);
+            Account myAccount=new Account(nametxt.getText(),
+                    Double.parseDouble(balancrtxt.getText()),
+                    Integer.parseInt(numtxt.getText()));
+
+            objectOutputStream.writeObject(myAccount);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                fileOutputStream.close();
+                objectOutputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void readAccountObject() throws IOException {
+        try {
+            fileInputStream=new FileInputStream("D:\\4thSemester\\" +
+                    "Programming3\\file\\Objects file" +
+                    ".ser");
+            objectInputStream = new ObjectInputStream(fileInputStream);
+            System.out.println(objectInputStream.readObject());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            fileInputStream.close();
+            objectInputStream.close();
         }
     }
 }

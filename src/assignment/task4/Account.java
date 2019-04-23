@@ -1,11 +1,13 @@
 package assignment.task4;
 
-public class Account {
+import java.io.Serializable;
+
+public class Account implements Serializable{
     String accName;
-    Float accBalance;
+    double accBalance;
     int accNum;
 
-    public Account(String accName, Float accBalance, int accNum) {
+    public Account(String accName, double accBalance, int accNum) {
         this.accName = accName;
         this.accBalance = accBalance;
         this.accNum = accNum;
@@ -15,7 +17,7 @@ public class Account {
         this.accName = accName;
     }
 
-    public void setAccBalance(Float accBalance) {
+    public void setAccBalance(double accBalance) {
         this.accBalance = accBalance;
     }
 
@@ -27,7 +29,7 @@ public class Account {
         return accName;
     }
 
-    public Float getAccBalance() {
+    public double getAccBalance() {
         return accBalance;
     }
 
