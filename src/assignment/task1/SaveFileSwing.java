@@ -1,5 +1,7 @@
 package assignment.task1;
 
+import javafx.stage.FileChooser;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -36,7 +38,7 @@ public class SaveFileSwing extends JFrame {
         setResizable(true);
         setTitle("File Processing");
 
-
+        fileChooser = new JFileChooser();
         mainMenu = new JMenuBar();
         fileMenu = new JMenu("File");
         save = new JMenuItem("Save");
@@ -137,7 +139,7 @@ public class SaveFileSwing extends JFrame {
     }
 
     public void openFileChooser() {
-        fileChooser = new JFileChooser();
+
         fileChooser.showDialog(SaveFileSwing.this, "Select");
         try {
             selectedFile = fileChooser.getSelectedFile();
@@ -157,13 +159,16 @@ public class SaveFileSwing extends JFrame {
 
     public void writeContentinFile() throws IOException {
         try {
-            fileChooser2 = new JFileChooser();
-            fileChooser2.showSaveDialog(SaveFileSwing.this);
-            File choosed = fileChooser.getSelectedFile();
-            choosed.createNewFile();
-            fileWriter = new FileWriter(choosed);
+            if (selectedFile!=null){
+            fileWriter = new FileWriter(selectedFile);
             printWriter = new PrintWriter(fileWriter);
-            printWriter.println(fileTxt.getText());
+            printWriter.println();
+            printWriter.println(fileTxt.getText());}
+            else{
+                JOptionPane.showMessageDialog(this,"You have to select file at fisrt !");
+
+
+            }
 
         } catch (IOException e) {
             System.out.println("Error IOException");

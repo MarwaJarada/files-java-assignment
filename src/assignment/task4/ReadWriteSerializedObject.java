@@ -88,7 +88,7 @@ public class ReadWriteSerializedObject extends JFrame{
         try {
             fileOutputStream=new FileOutputStream("D:\\4thSemester\\" +
                     "Programming3\\file\\Objects file" +
-                    ".ser");
+                    ".ser",true);
             objectOutputStream=new ObjectOutputStream(fileOutputStream);
             Account myAccount=new Account(nametxt.getText(),
                     Double.parseDouble(balancrtxt.getText()),

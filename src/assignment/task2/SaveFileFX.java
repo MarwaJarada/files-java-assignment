@@ -1,4 +1,5 @@
 package assignment.task2;
+import assignment.task1.SaveFileSwing;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,6 +10,8 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
+import javax.swing.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -42,6 +45,7 @@ import java.util.Scanner;
         MenuItem saveMenuItem;
         FileWriter fileWriter;
         PrintWriter printWriter;
+        File selectedFile;
 
         public static void main(String[] args) {
             launch(args);
@@ -66,7 +70,7 @@ import java.util.Scanner;
                     FileChooser fileChooser = new FileChooser();
                     try {
 
-                        File selectedFile = fileChooser.showOpenDialog(primaryStage);
+                        selectedFile = fileChooser.showOpenDialog(primaryStage);
                         Scanner scanner = new Scanner(selectedFile);
                         while (scanner.hasNextLine()){
                             txtArea.appendText(scanner.nextLine());
@@ -170,7 +174,11 @@ import java.util.Scanner;
                         txtArea.setEditable(false);
                         break;
                     case "save":
-                        writeContentinFile();
+                        try {
+                            writeContentinFile();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
 
                 }
             }
@@ -181,21 +189,26 @@ import java.util.Scanner;
 
         }
 
-
-        public void writeContentinFile(){
-            File file = new File("file.txt");
+        public void writeContentinFile() throws IOException {
             try {
-                fileWriter=new FileWriter(file);
-                printWriter=new PrintWriter(fileWriter);
-                printWriter.println(txtArea.getText());
-            }catch (IOException e){
+                if (selectedFile!=null){
+                    fileWriter = new FileWriter(selectedFile);
+                    printWriter = new PrintWriter(fileWriter);
+                    printWriter.println();
+                    printWriter.println(txtArea.getText());
+                }
+
+            } catch (IOException e) {
                 System.out.println("Error IOException");
+
+
             }finally {
-                printWriter.close();
+                try{
+                    fileWriter.close();
+                    printWriter.close();}catch (Exception e){
 
+                }
             }
-
-
 
         }
 
