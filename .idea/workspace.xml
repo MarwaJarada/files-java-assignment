@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="34dfd8d7-767b-493a-9235-362f289cb181" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Objects file.ser" afterPath="$PROJECT_DIR$/Objects file.ser" />
-      <change beforePath="$PROJECT_DIR$/file.txt" afterPath="$PROJECT_DIR$/file.txt" />
-      <change beforePath="$PROJECT_DIR$/out/production/file/assignment/task4/ReadWriteSerializedObject$ActionListener.class" afterPath="$PROJECT_DIR$/out/production/file/assignment/task4/ReadWriteSerializedObject$ActionListener.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/file/assignment/task4/ReadWriteSerializedObject.class" afterPath="$PROJECT_DIR$/out/production/file/assignment/task4/ReadWriteSerializedObject.class" />
-      <change beforePath="$PROJECT_DIR$/src/assignment/task1/SaveFileSwing.java" afterPath="$PROJECT_DIR$/src/assignment/task1/SaveFileSwing.java" />
-      <change beforePath="$PROJECT_DIR$/src/assignment/task2/SaveFileFX.java" afterPath="$PROJECT_DIR$/src/assignment/task2/SaveFileFX.java" />
-      <change beforePath="$PROJECT_DIR$/src/assignment/task4/ReadWriteSerializedObject.java" afterPath="$PROJECT_DIR$/src/assignment/task4/ReadWriteSerializedObject.java" />
+      <change beforePath="$PROJECT_DIR$/file.txt" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -768,13 +761,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/file.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="215" lean-forward="false" selection-start-line="0" selection-start-column="215" selection-end-line="0" selection-end-column="215" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/assignment/test.fxml" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/javafx-src.zip!/com/sun/javafx/application/PlatformImpl.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -874,6 +860,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
           <caret line="164" column="34" lean-forward="true" selection-start-line="164" selection-start-column="34" selection-end-line="164" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/file.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="5" lean-forward="true" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
           <folding />
         </state>
       </provider>
